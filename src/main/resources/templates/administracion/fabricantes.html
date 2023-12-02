@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{layout::head}">
+    <meta charset="UTF-8">
+    <title>Mantenimiento de Fabricantes</title>
+    <script th:src="@{/scripts/web/administracion/frmfabricantes.js}"
+            type="text/javascript"></script>
+</head>
+<body>
+<nav th:replace="~{layout::menu}"></nav>
+<div class="card">
+    <div class="card-header">
+        Lista de Fabricantes
+    </div>
+    <div class="card-body">
+        <button id="btnnuevo" type="button" class="btn btn-primary">
+            <i class="bi bi-plus-circle"></i> Nuevo
+        </button>
+        <table id="tblfabricantes" class="table table-striped table-bordered">
+            <thead>
+            <tr>
+                <th scope="col">ID</th>
+                <th scope="col">Nombre</th>
+                <th scope="col">Pais</th>
+                <th scope="col">SitioWeb</th>
+                <th>Actualizar</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="fabricante: ${listar}">
+                <td th:text="${fabricante.id}"></td>
+                <td th:text="${fabricante.nombre}"></td>
+                <td th:text="${fabricante.pais}"></td>
+                <td th:text="${fabricante.sitio_web}"></td>
+                <td>
+                    <button type="button" class="btn btn-info btnactualizar"
+                            th:data-idfabricante="${fabricante.id}"
+                            th:data-nomfabricante="${fabricante.nombre}"
+                            th:data-paisfabricante="${fabricante.pais}"
+                            th:data-sitio-webfabricante="${fabricante.sitio_web}">
+                        <i class="bi bi-pencil-square"></i>
+                    </button>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+<!-- Modal -->
+<div class="modal fade" id="modalfabricantes" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalLabel">Mantenimiento Fabricantes</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="mb-3">
+                    <label for="txtnombrefabricante" class="form-label">Nombre:</label>
+                    <input type="text" class="form-control" id="txtnombrefabricante" placeholder="Ingrese nombre">
+                    <input type="hidden" id="hddidfabricante" value="0">
+                </div>
+                <div class="mb-3">
+                    <label for="txtpaisfabricante" class="form-label">País:</label>
+                    <input type="text" class="form-control" id="txtpaisfabricante" placeholder="Ingrese país">
+                </div>
+                <div class="mb-3">
+                    <label for="txtsitiofabricante" class="form-label">Sitio Web:</label>
+                    <input type="text" class="form-control" id="txtsitiofabricante" placeholder="Ingrese sitio web">
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                    <i class="bi bi-x-circle"></i> Cerrar</button>
+                <button id="btnguardarfabricante" type="button" class="btn btn-primary">
+                    <i class="bi bi-cloud-download-fill"></i> Guardar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>
