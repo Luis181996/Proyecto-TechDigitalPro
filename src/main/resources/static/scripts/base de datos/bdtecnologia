@@ -1,0 +1,59 @@
+CREATE DATABASE bdtecnologia;
+use bdtecnologia;
+
+CREATE TABLE fabricantes (
+  idfabricantes INT NOT NULL AUTO_INCREMENT,
+  nombre VARCHAR(255) NOT NULL,
+  pais VARCHAR(255) NOT NULL,
+  sitio_web VARCHAR(255) NOT NULL,
+  PRIMARY KEY (idfabricantes)
+);
+
+INSERT INTO fabricantes (nombre, pais, sitio_web)
+VALUES ('Apple', 'Estados Unidos', 'https://www.apple.com');
+INSERT INTO fabricantes (nombre, pais, sitio_web)
+VALUES ('Samsung', 'Corea del Sur', 'https://www.samsung.com');
+INSERT INTO fabricantes (nombre, pais, sitio_web)
+VALUES ('Huawei', 'China', 'https://www.huawei.com');
+
+CREATE TABLE productos (
+ idproductos Int auto_increment primary key,
+ nombre varchar (255) not null,
+ descripcion text,
+ precio decimal (10,2) not null,
+ stock int not null,
+ idfabricantes int,
+ foreign key (idfabricantes) references fabricantes (idfabricantes)
+);
+
+INSERT INTO PRODUCTOS (nombre, descripcion, precio, stock, idfabricantes)
+VALUES ('iPhone 14 Pro Max', 'El smartphone mas avanzado de Apple', 5.000, 50, 1);
+INSERT INTO PRODUCTOS (nombre, descripcion, precio, stock, idfabricantes)
+VALUES ('Sansung S23 Ultra', 'El smartphone con camara ultra', 3.500, 50, 2);
+INSERT INTO PRODUCTOS (nombre, descripcion, precio, stock, idfabricantes)
+VALUES ('Huawei P60 Pro', 'Procesador de ultima generacion', 3.900, 50, 3);
+
+
+CREATE TABLE clientes (
+  idclientes INT NOT NULL AUTO_INCREMENT,
+  nombre VARCHAR(255) NOT NULL,
+  apellidos VARCHAR(255) NOT NULL,
+  direccion VARCHAR(255) NOT NULL,
+  correo_electronico VARCHAR(255) NOT NULL,
+  telefono VARCHAR(255) NOT NULL,
+  PRIMARY KEY (idclientes),
+  idproductos int,
+  foreign key (idproductos) references productos(idproductos)
+);
+
+CREATE TABLE ventas (
+  idventas INT NOT NULL AUTO_INCREMENT,
+  fecha DATE NOT NULL,
+  cantidad INT NOT NULL,
+  preciototal DECIMAL(10,2) NOT NULL,
+  PRIMARY KEY (idventas),
+  idclientes int,
+  foreign key (idclientes) references clientes(idclientes)
+);
+
+insert into rol values (1,"USER");

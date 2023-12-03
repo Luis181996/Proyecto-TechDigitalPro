@@ -1,25 +1,33 @@
 package cibertec.edu.pe.Proyecto.TechDigitalPro.model.bd;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.util.Date;
 
 @Entity
 @Data
+@AllArgsConstructor
+@NoArgsConstructor
 @Table(name = "ventas")
 public class Ventas {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    private Integer idventas;
+
     @Column (name = "fecha")
     private Date fecha;
-    @Column (name = "producto_id")
-    private Integer producto_id;
-    @Column (name = "cliente_id")
-    private Integer cliente_id;
+
     @Column (name = "cantidad")
     private Integer cantidad;
-    @Column (name = "precio_total")
-    private Boolean precio_total;
+
+    @Column (name = "preciototal")
+    private Double preciototal;
+
+    @ManyToOne
+    @JoinColumn(name = "idclientes")
+    private Cliente cliente;
+
 }

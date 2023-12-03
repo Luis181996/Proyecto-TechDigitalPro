@@ -1,12 +1,16 @@
 package cibertec.edu.pe.Proyecto.TechDigitalPro.model.bd;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.util.Set;
 
-@Data
 @Entity
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
 @Table(name = "usuario")
 public class Usuario {
     @Id

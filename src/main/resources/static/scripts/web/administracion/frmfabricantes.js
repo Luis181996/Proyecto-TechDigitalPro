@@ -22,7 +22,7 @@ $(document).ready(function () {
            contentType: "application/json",
            url: "/fabricantes/registrar",
            data: JSON.stringify({
-               id: $("#hddidfabricante").val(),
+               idfabricantes: $("#hddidfabricante").val(),
                nombre: $("#txtnombrefabricante").val(),
                pais: $("#txtpaisfabricante").val(),
                sitio_web: $("#txtsitiofabricante").val()
@@ -47,13 +47,13 @@ $(document).ready(function () {
                 $("#tblfabricantes > tbody").html("");
                 $.each(resultado, function (index, value) {
                     $("#tblfabricantes > tbody").append("<tr>" +
-                        "<td>" + value.id + "</td>" +
+                        "<td>" + value.idfabricantes + "</td>" +
                         "<td>" + value.nombre + "</td>" +
                         "<td>" + value.pais + "</td>" +
                         "<td>" + value.sitio_web + "</td>" +
                         "<td>" +
                         "<button type='button' class='btn btn-info btnactualizar'" +
-                        " data-idfabricante='" + value.id + "'" +
+                        " data-idfabricante='" + value.idfabricantes + "'" +
                         " data-nomfabricante='" + value.nombre + "'" +
                         " data-paisfabricante='" + value.pais + "'" +
                         " data-sitio-webfabricante='" + value.sitio_web + "'>" +

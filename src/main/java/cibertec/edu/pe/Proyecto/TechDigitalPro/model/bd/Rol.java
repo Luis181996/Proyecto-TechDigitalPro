@@ -1,10 +1,14 @@
 package cibertec.edu.pe.Proyecto.TechDigitalPro.model.bd;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
-@Data
 @Entity
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
 @Table(name = "rol")
 public class Rol {
      @Id

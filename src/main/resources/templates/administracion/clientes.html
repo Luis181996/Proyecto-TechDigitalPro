@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head th:replace="~{layout::head}">
+</head>
+<body>
+
+<nav th:replace="~{layout::menu}"></nav>
+<div>
+    <h2>Cliente y Venta</h2>
+    <div class="card-body">
+        <div class="d-flex justify-content-between">
+            <button id="btnagregarcliente" class="btn btn-primary mb-3 fs-4">
+                <i class="fas fa-plus"></i> Cliente x Venta
+            </button>
+        </div></div>
+    <div class="table-responsive vertscrol">
+        <table class="table table-hover table-bordered text-center" id="tableclientes" tabindex="-1">
+            <thead>
+            <tr>
+                <th scope="col">Id</th>
+                <th scope="col">Nombre</th>
+                <th scope="col">Apellidos</th>
+                <th scope="col">Dirección</th>
+                <th scope="col">Número Teléfono</th>
+                <th scope="col">Correo</th>
+                <th scope="col">Id Ventas</th>
+                <th scope="col">Fecha</th>
+                <th scope="col">Cantidad</th>
+                <th scope="col">Precio Total</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="cliente, clienteIndex : ${listadocliente}">
+                <td th:text="${cliente.idclientes}"></td>
+                <td th:text="${cliente.nombre}"></td>
+                <td th:text="${cliente.apellidos}"></td>
+                <td th:text="${cliente.direccion}"></td>
+                <td th:text="${cliente.telefono}"></td>
+                <td th:text="${cliente.correo_electronico}"></td>
+                <td th:if="${listadoventa != null and listadoventa.size() > clienteIndex.index}"
+                    th:text="${listadoventa[clienteIndex.index].idventas}"></td>
+                <td th:unless="${listadoventa != null and listadoventa.size() > clienteIndex.index}">N/A</td>
+                <td th:if="${listadoventa != null and listadoventa.size() > clienteIndex.index}"
+                    th:text="${#dates.format(listadoventa[clienteIndex.index].fecha, 'yyyy-MM-dd')}"></td>
+                <td th:unless="${listadoventa != null and listadoventa.size() > clienteIndex.index}">N/A</td>
+                <td th:if="${listadoventa != null and listadoventa.size() > clienteIndex.index}"
+                    th:text="${listadoventa[clienteIndex.index].cantidad}"></td>
+                <td th:unless="${listadoventa != null and listadoventa.size() > clienteIndex.index}">N/A</td>
+                <td th:if="${listadoventa != null and listadoventa.size() > clienteIndex.index}"
+                    th:text="${listadoventa[clienteIndex.index].preciototal}"></td>
+                <td th:unless="${listadoventa != null and listadoventa.size() > clienteIndex.index}">N/A</td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+<div aria-hidden="true" aria-labelledby="exampleModalLabel" class="modal fade" id="modalNuevo" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalLabel">Cliente y Ventas</h1>
+                <button aria-label="Close" class="btn-close" data-bs-dismiss="modal" type="button"></button>
+            </div>
+            <div class="modal-body">
+                <div class="mb-3">
+                    <label class="form-label" for="txtcliente_nombre">Nombre</label>
+                    <input class="form-control" id="txtcliente_nombre" type="text">
+                </div>
+                <div class="mb-3">
+                    <label class="form-label" for="txtcliente_apellidos">Apellidos</label>
+                    <input class="form-control" id="txtcliente_apellidos" type="text">
+                </div>
+                <div class="mb-3">
+                    <label class="form-label" for="txtcliente_direccion">Direccion</label>
+                    <input class="form-control" id="txtcliente_direccion" maxlength="30" type="text">
+                </div>
+                <div class="mb-3">
+                    <label class="form-label" for="txtcliente_telefono">Telefono</label>
+                    <input class="form-control" id="txtcliente_telefono" maxlength="30" type="text">
+                </div>
+                <div class="mb-3">
+                    <label class="form-label" for="txtcliente_correoelectronico">Correo</label>
+                    <input class="form-control" id="txtcliente_correoelectronico" maxlength="30" type="text">
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label" for="txtventa_fecha">Fecha</label>
+                    <input class="form-control" id="txtventa_fecha" maxlength="30" type="datetime-local" pattern="\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}\.\d{1}">
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label" for="txtventa_cantidad">Cantidad</label>
+                    <input class="form-control" id="txtventa_cantidad" type="number">
+                </div>
+                <div class="mb-3">
+                    <label class="form-label" for="txtventa_preciototal">Precio Total</label>
+                    <input class="form-control" id="txtventa_preciototal" type="number">
+                </div>
+
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" data-bs-dismiss="modal" type="button"><i class="fas fa-times"></i>
+                    Cancelar
+                </button>
+
+                <!-- Hidden Fields for IDs -->
+                <input type="hidden" id="hddidcliente">
+                <input type="hidden" id="hddidventa">
+
+                <button class="btn btn-primary" id="btnguardarcliente" type="button"><i class="fas fa-save"></i> Guardar
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>
