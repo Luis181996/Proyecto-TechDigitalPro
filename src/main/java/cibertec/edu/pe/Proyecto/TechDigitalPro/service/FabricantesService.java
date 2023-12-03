@@ -20,8 +20,8 @@ public class FabricantesService {
             boolean respuesta = true;
             try {
                 Fabricantes nuevoFabricante = new Fabricantes();
-                if (fabricantes.getId() > 0) {
-                    nuevoFabricante.setId(fabricantes.getId());
+                if (fabricantes.getIdfabricantes() > 0) {
+                    nuevoFabricante.setIdfabricantes(fabricantes.getIdfabricantes());
                 }
                 nuevoFabricante.setNombre(fabricantes.getNombre());
                 nuevoFabricante.setPais(fabricantes.getPais());

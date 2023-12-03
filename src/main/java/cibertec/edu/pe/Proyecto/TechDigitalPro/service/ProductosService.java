@@ -22,8 +22,8 @@ public class ProductosService {
         boolean respuesta = true;
         try {
             Productos nuevoProductos = new Productos();
-            if (productos.getId() > 0) {
-                nuevoProductos.setId(productos.getId());
+            if (productos.getIdproductos() > 0) {
+                nuevoProductos.setIdproductos(productos.getIdproductos());
             }
             nuevoProductos.setNombre(productos.getNombre());
             nuevoProductos.setDescripcion(productos.getDescripcion());
@@ -36,6 +36,9 @@ public class ProductosService {
         }
         return ResultadoResponse.builder().respuesta(respuesta)
                 .mensaje(mensaje).build();
+    }
+    public void eliminarproducto(Integer id){
+        productosRepository.deleteById(id);
     }
 
 }

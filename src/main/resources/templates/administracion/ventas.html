@@ -9,106 +9,37 @@
 
 <nav th:replace="~{layout::menu}" ></nav>
 <div class="card">
-    <div class="card-header">
-        Lista de Ventas
+    <div class="card-header mb-3 fs-4">
+        <h2 class="card">
+            Reporte de Ventas
+        </h2>
     </div>
     <div class="card-body">
-        <button id="btnnuevo" type="button" class="btn btn-primary">
-            <i class="bi bi-plus-circle"></i> Nuevo
-        </button>
-        <table id="tblventas" class="table table-striped table-bordered">
+
+        <table id="tblventas"  class="table table-striped table-bordered text-center">
             <thead>
             <tr>
                 <th scope="col">ID</th>
-                <th scope="col">Fecha</th>
-                <th scope="col">Producto_id</th>
-                <th scope="col">Cliente_id</th>
+                <th scope="col">Nombre</th>
+                <th scope="col">Apellido</th>
                 <th scope="col">Cantidad</th>
-                <th scope="col">Precio_total</th>
-                <th>Actualizar</th>
-                <th>Eliminar</th>
+                <th scope="col">Precio total</th>
+                <th scope="col">Fecha</th>
             </tr>
             </thead>
             <tbody>
-            <tr th:each="ventas: ${listaventas}">
+            <tr th:each="ventas: ${listar}">
                 <td th:text="${ventas.idventas}"></td>
-                <td th:text="${ventas.fechventas}"></td>
-                <td th:text="${ventas.prodventas}"></td>
-                <td th:text="${ventas.clientventas}"></td>
-                <td th:text="${ventas.cantventas}"></td>
-                <td th:text="${ventas.fabricantes.precioventas}"></td>
-                <td >
-                    <button type="button" class="btn btn-info btnactualizar"
-                            th:data-idventas="${ventas.idventas}"
-                            th:data-fechventas="${ventas.fechventas}"
-                            th:data-prodventas="${ventas.prodventas}"
-                            th:data-clientventas="${ventas.clientventas}"
-                            th:data-cantventas="${ventas.cantventas}"
-                            th:data-precioventas="${ventas.fabricantes.precioventas}">
-                        <i class="bi bi-pencil-square"></i>
-                    </button>
-                </td>
-                <td >
-                    <button type="button" class="btn btn-danger btneliminar"
-                            th:data-idventas="${ventas.idventas}"
-                            th:data-fechventas="${ventas.fechventas}"
-                            th:data-prodventas="${ventas.prodventas}"
-                            th:data-clientventas="${ventas.clientventas}"
-                            th:data-cantventas="${ventas.cantventas}"
-                            th:data-precioventas="${ventas.fabricantes.precioventas}">
-                        <i class="bi bi-trash"></i>
-                    </button>
-                </td>
+                <td th:text="${ventas.Cliente.nombre}"></td>
+                <td th:text="${ventas.Cliente.apellidos}"></td>
+                <td th:text="${ventas.cantidad}"></td>
+                <td th:text="${ventas.preciototal}"></td>
+                <td th:text="${ventas.fecha}"></td>
             </tr>
             </tbody>
         </table>
     </div>
 </div>
-<!-- Modal -->
-<div class="modal fade" id="modalventas" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h1 class="modal-title fs-5" id="exampleModalLabel">Mantenimiento Ventas</h1>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <div class="mb-3">
-                    <label for="txtdescripcion" class="form-label">Descripción:</label>
-                    <input type="text" class="form-control" id="txtdescripcion"
-                           placeholder="Ingrese descripción">
-                    <input type="hidden" id="hddidventas" value="0">
-                </div>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
-                    <i class="bi bi-x-circle"></i> Cerrar</button>
-                <button id="btnguardar" type="button" class="btn btn-primary">
-                    <i class="bi bi-cloud-download-fill"></i> Guardar</button>
-            </div>
-        </div>
-    </div>
-</div>
-<!-- Modal para eliminar ventas -->
-<div class="modal fade" id="modaleliminarventas" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h1 class="modal-title fs-5">Eliminar Ventas</h1>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <label id="lblmensajeeliminar"></label>
-                <input type="hidden" value="0" id="hddidventaseliminar">
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
-                    <i class="bi bi-x-circle"></i> Cerrar</button>
-                <button id="btneliminar" type="button" class="btn btn-primary">
-                    <i class="bi bi-cloud-download-fill"></i> Eliminar</button>
-            </div>
-        </div>
-    </div>
-</div>
+
 </body>
 </html>

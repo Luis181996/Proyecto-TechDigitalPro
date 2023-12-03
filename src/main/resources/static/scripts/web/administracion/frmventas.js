@@ -46,7 +46,7 @@ $(document).on("click", "#btnguardar", function(){
 function listarVentas(){
     $.ajax({
         type: "GET",
-        url: "/administracion/ventas/listar",
+        url: "/ventas/listar",
         dataType: "json",
         success: function(resultado){
             $("#tblventas > tbody").html("");

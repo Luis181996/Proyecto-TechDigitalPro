@@ -8,13 +8,12 @@
 </head>
 <body>
 <nav th:replace="~{layout::menu}"></nav>
-<div class="card">
-    <div class="card-header">
+<h2 class="card">
         Lista de Fabricantes
-    </div>
+    </h2>
     <div class="card-body">
-        <button id="btnnuevo" type="button" class="btn btn-primary">
-            <i class="bi bi-plus-circle"></i> Nuevo
+        <button id="btnnuevo" type="button" class="btn btn-primary mb-3 fs-4">
+            <i class="fas fa-plus"></i> Nuevo Fabricante
         </button>
         <table id="tblfabricantes" class="table table-striped table-bordered">
             <thead>
@@ -28,17 +27,17 @@
             </thead>
             <tbody>
             <tr th:each="fabricante: ${listar}">
-                <td th:text="${fabricante.id}"></td>
+                <td th:text="${fabricante.idfabricantes}"></td>
                 <td th:text="${fabricante.nombre}"></td>
                 <td th:text="${fabricante.pais}"></td>
                 <td th:text="${fabricante.sitio_web}"></td>
                 <td>
                     <button type="button" class="btn btn-info btnactualizar"
-                            th:data-idfabricante="${fabricante.id}"
+                            th:data-idfabricante="${fabricante.idfabricantes}"
                             th:data-nomfabricante="${fabricante.nombre}"
                             th:data-paisfabricante="${fabricante.pais}"
                             th:data-sitio-webfabricante="${fabricante.sitio_web}">
-                        <i class="bi bi-pencil-square"></i>
+                        <i class="fas fa-edit"></i>
                     </button>
                 </td>
             </tr>
